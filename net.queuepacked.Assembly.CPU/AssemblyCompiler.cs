@@ -27,9 +27,6 @@ namespace net.queuepacked.Assembly.CPU
         [GeneratedRegex(@"set #?(?<target>\w+) to (?<source>#?[\w\d]+)(?: (?<operation>\+|-|<|>) (?<argument>#?[\w\d]+))?", RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.IgnoreCase)]
         private static partial Regex SetValuePattern();
 
-        [GeneratedRegex(@"(?:^|\s)=(?<constant>\d+)(?:$|\s)", RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.IgnoreCase)]
-        private static partial Regex ConstantPattern();
-
         [GeneratedRegex(@"define(?:[ ,]+(?<withvalue>\w+\=\d+)|[ ,]+(?<nameonly>\w+))+", RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.IgnoreCase)]
         private static partial Regex DefinePattern();
 
@@ -199,14 +196,6 @@ namespace net.queuepacked.Assembly.CPU
                     firstLine = false;
                 else
                     stringBuilder.AppendLine();
-
-                //foreach (Match match in ConstantPattern().Matches(line))
-                //{
-                //    string value = match.Groups["constant"].Value;
-
-                //    constantsToAdd.Add(int.Parse(value));
-                //    line = line.Replace("=" + value, value);
-                //}
 
                 if (RepeatStartPattern().Match(line) is { Success: true } repeatStart)
                 {
