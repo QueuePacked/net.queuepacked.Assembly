@@ -1,0 +1,306 @@
+﻿<Window x:Class="net.queuepacked.Assembly.UI.CpuView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:net.queuepacked.Assembly.UI"
+        xmlns:cpu="clr-namespace:net.queuepacked.Assembly.CPU;assembly=net.queuepacked.Assembly.CPU"
+        mc:Ignorable="d" 
+        d:DataContext="{d:DesignInstance local:Model}" 
+        Background="GhostWhite"
+        Title="MainWindow" Height="675" Width="1200" WindowStyle="None" ResizeMode="NoResize">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="VisibilityConverter"/>
+        <local:NonCollapsingVisibilityConverter x:Key="NonCollapsingVisibilityConverter"/>
+    </Window.Resources>
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Column="0" BorderThickness="3" BorderBrush="Black" CornerRadius="5" Visibility="{Binding ComponentVisibilities.StepReadOp, Mode=OneWay, Converter={StaticResource NonCollapsingVisibilityConverter}}">
+                <Grid>
+                    <TextBlock Margin="0,4,0,8" Text="Read operation" TextAlignment="Center" FontWeight="Bold" FontSize="20"/>
+                    <TextBlock Padding="0,4,10,0" Text="→" TextAlignment="Right" Foreground="Beige" FontWeight="Bold" FontSize="20" Visibility="{Binding State.CycleAdvance, Converter={StaticResource VisibilityConverter}}"/>
+                </Grid>
+
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Background" Value="Beige"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding State.ProcessCycleStep, Mode=OneWay}" Value="{x:Static cpu:Step.ReadOpCode}">
+                                <Setter Property="Background" Value="MediumPurple"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+            </Border>
+
+            <Border Grid.Column="1" BorderThickness="3" BorderBrush="Black" CornerRadius="5" Visibility="{Binding ComponentVisibilities.StepReadArg, Mode=OneWay, Converter={StaticResource NonCollapsingVisibilityConverter}}">
+                <Grid>
+                    <TextBlock Margin="0,4,0,8" Text="Read argument" TextAlignment="Center" FontWeight="Bold" FontSize="20"/>
+                    <TextBlock Padding="0,4,10,0" Text="→" TextAlignment="Right" Foreground="Beige" FontWeight="Bold" FontSize="20" Visibility="{Binding State.CycleAdvance, Converter={StaticResource VisibilityConverter}}"/>
+                </Grid>
+
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Background" Value="Beige"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding State.ProcessCycleStep, Mode=OneWay}" Value="{x:Static cpu:Step.ReadOptionalArgument}">
+                                <Setter Property="Background" Value="MediumPurple"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+            </Border>
+
+            <Border Grid.Column="2" BorderThickness="3" BorderBrush="Black" CornerRadius="5" Visibility="{Binding ComponentVisibilities.StepProcess, Mode=OneWay, Converter={StaticResource NonCollapsingVisibilityConverter}}">
+                <Grid>
+                    <TextBlock Margin="0,4,0,8" Text="Process operation" TextAlignment="Center" FontWeight="Bold" FontSize="20"/>
+                    <TextBlock Padding="0,4,10,0" Text="→" TextAlignment="Right" Foreground="Beige" FontWeight="Bold" FontSize="20" Visibility="{Binding State.CycleAdvance, Converter={StaticResource VisibilityConverter}}"/>
+                </Grid>
+
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Background" Value="Beige"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding State.ProcessCycleStep, Mode=OneWay}" Value="{x:Static cpu:Step.ProcessOperation}">
+                                <Setter Property="Background" Value="MediumPurple"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+            </Border>
+
+            <Border Grid.Column="3" BorderThickness="3" BorderBrush="Black" CornerRadius="5" Visibility="{Binding ComponentVisibilities.StepIncPc, Mode=OneWay, Converter={StaticResource NonCollapsingVisibilityConverter}}">
+                <Grid>
+                    <TextBlock Margin="0,4,0,8" Text="Increment PC" TextAlignment="Center" FontWeight="Bold" FontSize="20"/>
+                    <TextBlock Padding="0,4,10,0" Text="→" TextAlignment="Right" Foreground="Beige" FontWeight="Bold" FontSize="20" Visibility="{Binding State.CycleAdvance, Converter={StaticResource VisibilityConverter}}"/>
+                </Grid>
+
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Background" Value="Beige"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding State.ProcessCycleStep, Mode=OneWay}" Value="{x:Static cpu:Step.IncrementProgramCounter}">
+                                <Setter Property="Background" Value="MediumPurple"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+            </Border>
+        </Grid>
+
+        <ItemsControl Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" ItemsSource="{Binding MemoryItems}" HorizontalAlignment="Center" Visibility="{Binding ComponentVisibilities.Memory, Mode=OneWay, Converter={StaticResource NonCollapsingVisibilityConverter}}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"></StackPanel>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="{x:Type local:MemoryItem}">
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Top">
+                        <TextBlock Text="..." Margin="10,-15" FontWeight="Bold" FontSize="40" Visibility="{Binding IsLimiter, Converter={StaticResource VisibilityConverter}}"/>
+
+                        <StackPanel Visibility="{Binding Valid, Converter={StaticResource VisibilityConverter}}">
+                            <Viewbox Height="10" Visibility="{Binding Offset, Converter={StaticResource VisibilityConverter}}"/>
+
+                            <Border BorderBrush="Black" Background="White" BorderThickness="2" Width="50" Height="50" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="-1,0">
+                                <TextBlock Text="{Binding Value}" FontSize="15" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="{Binding Marker, Mode=OneWay}" Visibility="{Binding ComponentVisibilities.ReferenceNames, Mode=OneWay, Converter={StaticResource NonCollapsingVisibilityConverter}}" TextWrapping="Wrap" MaxWidth="50" TextAlignment="Center"/>
+
+                            <TextBlock Text="{Binding Address}" HorizontalAlignment="Center" FontWeight="DemiBold" FontSize="15" Foreground="LightGray" Margin="0,2"
+                                       Visibility="{Binding ComponentVisibilities.Addresses, Mode=OneWay, Converter={StaticResource NonCollapsingVisibilityConverter}}"/>
+
+                            <Viewbox Height="10" Visibility="{Binding NoOffset, Converter={StaticResource VisibilityConverter}}"/>
+
+                            <StackPanel Visibility="{Binding ComponentVisibilities.PcMarker, Mode=OneWay, Converter={StaticResource NonCollapsingVisibilityConverter}}">
+                                <TextBlock Text="⇑" FontSize="40" FontWeight="Bold" HorizontalAlignment="Center" Visibility="{Binding IsPc, Converter={StaticResource VisibilityConverter}}" Margin="0,-15,0,0"/>
+                                <TextBlock Text="PC" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Visibility="{Binding IsPc, Converter={StaticResource VisibilityConverter}}" Margin="0,-15,0,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <Border Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Grid.RowSpan="2" BorderBrush="Black" BorderThickness="5" Margin="10,0"
+                Visibility="{Binding ComponentVisibilities.OpDesc, Mode=OneWay, Converter={StaticResource NonCollapsingVisibilityConverter}}">
+            <TextBox TextWrapping="Wrap" MinLines="5" Padding="5,45,5,5" BorderThickness="0" AcceptsReturn="True" Text="{Binding Description, Mode=OneWay}" IsReadOnly="True" FontSize="25" FontWeight="DemiBold"/>
+        </Border>
+
+        <Border Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Grid.RowSpan="2" BorderBrush="Black" BorderThickness="3,5,5,5" Margin="10,0"
+                Background="White"  Visibility="{Binding ComponentVisibilities.Code, Mode=OneWay, Converter={StaticResource NonCollapsingVisibilityConverter}}">
+
+            <ItemsControl ItemsSource="{Binding CodeSegments, Mode=OneWay}" Grid.IsSharedSizeScope="True">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2"/>
+                                <ColumnDefinition Width="188" SharedSizeGroup="ColumnSize"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Grid.Column="1" Background="White" TextWrapping="Wrap" Padding="5,5,5,5" BorderThickness="0" AcceptsReturn="True" Text="{Binding Path=., Mode=OneWay}" IsReadOnly="True" FontSize="18" FontWeight="DemiBold" MaxLines="12"/>
+                            <Rectangle Grid.Column="0" Fill="Black"/>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <!--<TextBox TextWrapping="Wrap" MinLines="5" Padding="5,5,5,5" BorderThickness="0" AcceptsReturn="True" Text="{Binding Code, Mode=OneWay}" IsReadOnly="True" FontSize="18" FontWeight="DemiBold" MaxLines="12"/>-->
+        </Border>
+
+        <TextBlock Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Margin="15,0,0,0" TextWrapping="NoWrap" Padding="5" Text="{Binding Name, Mode=OneWay}" FontSize="35" FontWeight="Black" TextAlignment="Left" VerticalAlignment="Top" 
+                   Visibility="{Binding ComponentVisibilities.OpDesc, Mode=OneWay, Converter={StaticResource NonCollapsingVisibilityConverter}}"/>
+
+        <StackPanel Grid.Column="0" Grid.Row="4" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,30,0">
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Visibility="{Binding ComponentVisibilities.Pc, Mode=OneWay, Converter={StaticResource NonCollapsingVisibilityConverter}}">
+                <TextBlock Text="PC" FontWeight="Bold" FontSize="30" TextAlignment="Center" VerticalAlignment="Center" Margin="10"/>
+                <Border BorderBrush="Black" Background="White" BorderThickness="5" Width="120" Height="90">
+                    <TextBlock Text="{Binding State.ProgramCounter, Mode=OneWay}" FontWeight="Bold" FontSize="40" TextAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+            </StackPanel>
+
+            <Border BorderBrush="Black" BorderThickness="5" Background="WhiteSmoke" Padding="5" HorizontalAlignment="Right" Margin="0,10,0,0"
+                    Visibility="{Binding ComponentVisibilities.Alu, Mode=OneWay, Converter={StaticResource NonCollapsingVisibilityConverter}}">
+                <StackPanel Orientation="Horizontal" Margin="0,0">
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,0,10,0">
+                        <TextBlock Text="ALU" FontWeight="Bold" FontSize="30" TextAlignment="Center" Margin="0,0,0,0"/>
+                        <Grid>
+                            <Ellipse Width="40" Height="40" Fill="White" Stroke="Black" StrokeThickness="3"/>
+                            <Ellipse Width="25" Height="25" Fill="Black" Visibility="{Binding State.AluFlag, Converter={StaticResource VisibilityConverter}}"/>
+                        </Grid>
+                    </StackPanel>
+
+                    <Border BorderBrush="Black" Background="White" BorderThickness="5" Width="120" Height="90" Margin="0,0,0,0">
+                        <TextBlock Text="{Binding State.Accumulator, Mode=OneWay}" FontWeight="Bold" FontSize="40" TextAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,10,10,0" 
+                        Visibility="{Binding ComponentVisibilities.Io, Mode=OneWay, Converter={StaticResource NonCollapsingVisibilityConverter}}">
+                <StackPanel Orientation="Vertical">
+
+                    <TextBlock Text="→" TextAlignment="Left" FontSize="30" Margin="0,0,0,-15" Visibility="{Binding ReadsIn, Mode=OneWay, Converter={StaticResource NonCollapsingVisibilityConverter}}" />
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,10,0">
+                        <TextBlock Text="In" FontWeight="Bold" FontSize="30" TextAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Foreground" Value="Black"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding WritesOut, Mode=OneWay}" Value="true">
+                                            <Setter Property="Foreground" Value="LightGray"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                        <TextBlock Text="/" FontWeight="Bold" FontSize="30" TextAlignment="Center" VerticalAlignment="Center" />
+                        <TextBlock Text="Out" FontWeight="Bold" FontSize="30" TextAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Foreground" Value="Black"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ReadsIn, Mode=OneWay}" Value="true">
+                                            <Setter Property="Foreground" Value="LightGray"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </StackPanel>
+
+                    <TextBlock Text="←" TextAlignment="Right" FontSize="30" Margin="0,-15,10,0" Visibility="{Binding WritesOut, Mode=OneWay, Converter={StaticResource NonCollapsingVisibilityConverter}}" />
+
+                </StackPanel>
+
+                <Border BorderBrush="Black" BorderThickness="5" Width="120" Height="90">
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Setter Property="Background" Value="White"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ReadsIn, Mode=OneWay}" Value="true">
+                                    <Setter Property="Background" Value="Khaki"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding WritesOut, Mode=OneWay}" Value="true">
+                                    <Setter Property="Background" Value="Beige"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <TextBox Text="{Binding InputOutput , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="40" TextAlignment="Center" VerticalAlignment="Center"
+                             IsReadOnly="{Binding DoesNotRead}"
+                             BorderThickness="0" Padding="0,-5,0,0" Background="{Binding Background, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Border}}}"/>
+                </Border>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Column="3" Grid.Row="4" Grid.RowSpan="2" VerticalAlignment="Center">
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding ComponentVisibilities.LoadedOp, Mode=OneWay, Converter={StaticResource NonCollapsingVisibilityConverter}}">
+                <Border BorderBrush="Black" Background="WhiteSmoke" BorderThickness="3" Height="40" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,0,-2">
+                    <TextBlock Text="Current operation" FontSize="20" FontWeight="Bold" Margin="10,0,10,0" VerticalAlignment="Center" Width="180" TextAlignment="Center"/>
+                </Border>
+
+                <Border BorderBrush="Black" Background="White" BorderThickness="3" Width="80" Height="40" VerticalAlignment="Center" Padding="0,0,0,3">
+                    <TextBlock Text="{Binding State.LoadedOpCode, Mode=OneWay}" FontWeight="Bold" FontSize="30" TextAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,30,0,0" Visibility="{Binding ComponentVisibilities.LoadedArg, Mode=OneWay, Converter={StaticResource NonCollapsingVisibilityConverter}}">
+                <Border BorderBrush="Black" Background="WhiteSmoke" BorderThickness="3" Height="40" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,0,-2">
+                    <TextBlock Text="Operation address" FontSize="20" FontWeight="Bold" Margin="10,0,10,0" VerticalAlignment="Center" Width="180" TextAlignment="Center"/>
+                </Border>
+
+                <Border BorderBrush="Black" Background="White" BorderThickness="3" Width="80" Height="40" VerticalAlignment="Center" Padding="0,0,0,3">
+                    <TextBlock Text="{Binding State.LoadedMemoryAddressArgument, Mode=OneWay}" FontWeight="Bold" FontSize="30" TextAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,30,0,0" Visibility="{Binding ComponentVisibilities.InsCount, Mode=OneWay, Converter={StaticResource NonCollapsingVisibilityConverter}}">
+                <Border BorderBrush="Black" Background="WhiteSmoke" BorderThickness="3" Height="40" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,0,-2">
+                    <TextBlock Text="Instruction count" FontSize="20" FontWeight="Bold" Margin="10,0,10,0" VerticalAlignment="Center" Width="180" TextAlignment="Center"/>
+                </Border>
+
+                <Border BorderBrush="Black" Background="White" BorderThickness="3" Width="80" Height="40" VerticalAlignment="Center" Padding="0,0,0,3">
+                    <TextBlock Text="{Binding InstructionCount, Mode=OneWay}" FontWeight="Bold" FontSize="30" TextAlignment="Center" VerticalAlignment="Center" />
+                </Border>
+            </StackPanel>
+        </StackPanel>
+
+        <TextBlock Grid.Column="1" Grid.Row="3" Margin="0,-30,0,0" Grid.ColumnSpan="2" Grid.RowSpan="2" TextAlignment="Center" Text="STOPPED" 
+                   Foreground="DarkRed" FontSize="70" FontWeight="SemiBold" Visibility="{Binding State.Stopped, Mode=OneWay, Converter={StaticResource VisibilityConverter}}"/>
+
+        <TextBlock Grid.Column="0" Grid.Row="1" Margin="0,0,0,0" Grid.ColumnSpan="4" TextAlignment="Center" Text="{Binding State.Error, Mode=OneWay}" 
+                   Foreground="DarkRed" FontSize="20"/>
+    </Grid>
+</Window>

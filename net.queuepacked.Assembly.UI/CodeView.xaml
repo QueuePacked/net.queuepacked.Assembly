@@ -1,0 +1,36 @@
+﻿<Window x:Class="net.queuepacked.Assembly.UI.CodeView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:net.queuepacked.Assembly.UI"
+        xmlns:avalon="clr-namespace:ICSharpCode.AvalonEdit;assembly=ICSharpCode.AvalonEdit"
+        xmlns:cpu="clr-namespace:net.queuepacked.Assembly.CPU;assembly=net.queuepacked.Assembly.CPU"
+        mc:Ignorable="d" 
+        d:DataContext="{d:DesignInstance local:Model}" 
+        Background="GhostWhite"
+        Title="CodeView" Height="675" Width="1200" WindowStyle="None" ResizeMode="NoResize">
+    <Grid Margin="0" >
+        <Grid.ColumnDefinitions>
+<ColumnDefinition Width="*"/>
+<ColumnDefinition Width="*"/>
+<ColumnDefinition Width="*"/>
+<ColumnDefinition Width="*"/>
+<ColumnDefinition Width="*"/>
+<ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <avalon:TextEditor  Margin="5" Padding="10" Grid.Column="0" x:Name="Editor" FontFamily="Consolas" FontWeight="Bold" FontSize="19" ShowLineNumbers="False"
+                           VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"/>
+        <avalon:TextEditor Margin="5" Padding="10" Grid.Column="1" x:Name="Editor2" FontFamily="Consolas" FontWeight="Bold" FontSize="19" ShowLineNumbers="False"
+                       VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"/>
+        <avalon:TextEditor Margin="5" Padding="10" Grid.Column="2" x:Name="Editor3" FontFamily="Consolas" FontWeight="Bold" FontSize="19" ShowLineNumbers="False"
+                       VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"/>
+        <avalon:TextEditor Margin="5" Padding="10" Grid.Column="3" x:Name="Editor4" FontFamily="Consolas" FontWeight="Bold" FontSize="19" ShowLineNumbers="False"
+                       VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"/>
+        <avalon:TextEditor Margin="5" Padding="10" Grid.Column="4" x:Name="Editor5" FontFamily="Consolas" FontWeight="Bold" FontSize="19" ShowLineNumbers="False"
+                       VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"/>
+        <avalon:TextEditor Margin="0" Padding="10" Grid.Column="5" x:Name="Editor6" FontFamily="Consolas" FontWeight="Bold" FontSize="19" ShowLineNumbers="False"
+                       VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"/>
+
+    </Grid>
+</Window>

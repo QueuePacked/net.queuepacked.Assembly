@@ -1,0 +1,85 @@
+﻿<Window x:Class="net.queuepacked.Assembly.UI.Controls"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:net.queuepacked.Assembly.UI"
+        xmlns:cpu="clr-namespace:net.queuepacked.Assembly.CPU;assembly=net.queuepacked.Assembly.CPU"
+        mc:Ignorable="d" 
+        d:DataContext="{d:DesignInstance local:Model}" 
+        Background="GhostWhite"
+        Title="Controls" SizeToContent="WidthAndHeight" Topmost="True">
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal"  Margin="5">
+
+            <Button Content="Bwd. Instruction" FontSize="20" FontWeight="Bold" Margin="10" Padding="15" Click="BackwardsInstruction_OnClick"/>
+            <Button Content="Backwards" FontSize="20" FontWeight="Bold" Margin="10" Padding="15" Click="Backwards_OnClick"/>
+            <TextBlock Text="Tick Changes" FontSize="20" FontWeight="Bold" Margin="10,10,5,10" Padding="0,15,0,0"/>
+            <TextBlock Text="{Binding TickChanges, Mode=OneWay}" FontSize="30" FontWeight="Bold" Margin="5,10,10,10" Padding="0,7,0,0"/>
+            <Button Content="Forward" FontSize="20" FontWeight="Bold" Margin="10" Padding="15" Click="Forwards_OnClick"/>
+            <Button Content="Fwd. Instruction" FontSize="20" FontWeight="Bold" Margin="10" Padding="15" Click="ForwardsInstruction_OnClick"/>
+
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal"  Margin="5">
+
+            <Button Content="Load program" FontSize="20" FontWeight="Bold" Margin="10" Padding="15" Click="LoadProgram_OnClick"/>
+            <Button Content="OP codes" FontSize="20" FontWeight="Bold" Margin="10" Padding="15" Click="OpCode_OnClick"/>
+            <Button Content="References" FontSize="20" FontWeight="Bold" Margin="10" Padding="15" Click="References_OnClick"/>
+            <Button Content="Sequence" FontSize="20" FontWeight="Bold" Margin="10" Padding="15" Click="Sequence_OnClick"/>
+            <Button Content="Expand" FontSize="20" FontWeight="Bold" Margin="10" Padding="15" Click="Expand_OnClick"/>
+            <Button Content="Comments" FontSize="20" FontWeight="Bold" Margin="10" Padding="15" Click="Comments_OnClick"/>
+
+        </StackPanel>
+        <StackPanel Orientation="Horizontal"  Margin="5">
+
+            <Button Content="Move CPU view" FontSize="20" FontWeight="Bold" Margin="10" Padding="15" Click="CpuView_OnClick"/>
+            <Button Content="Move code view" FontSize="20" FontWeight="Bold" Margin="10" Padding="15" Click="CodeView_OnClick"/>
+            <Button Content="Screenshot (CPU)" FontSize="20" FontWeight="Bold" Margin="10" Padding="15" Click="ButtonCpuScreenshot_OnClick"/>
+            <Button Content="Screenshot (CODE)" FontSize="20" FontWeight="Bold" Margin="10" Padding="15" Click="ButtonCodeScreenshot_OnClick"/>
+
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="5">
+
+            <CheckBox Margin="10,0,0,0" IsChecked="{Binding ComponentVisibilities.StepReadOp}" Content="Step read OP"/>
+            <CheckBox Margin="10,0,0,0" IsChecked="{Binding ComponentVisibilities.StepReadArg}" Content="Step read Arg"/>
+            <CheckBox Margin="10,0,0,0" IsChecked="{Binding ComponentVisibilities.StepProcess}" Content="Step process"/>
+            <CheckBox Margin="10,0,0,0" IsChecked="{Binding ComponentVisibilities.StepIncPc}" Content="Step inc. PC"/>
+
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="5">
+
+            <CheckBox Margin="10,0,0,0" IsChecked="{Binding ComponentVisibilities.Memory}" Content="Memory"/>
+            <CheckBox Margin="10,0,0,0" IsChecked="{Binding ComponentVisibilities.Addresses}" Content="Adresses"/>
+            <CheckBox Margin="10,0,0,0" IsChecked="{Binding ComponentVisibilities.PcMarker}" Content="PC marker"/>
+            <CheckBox Margin="10,0,0,0" IsChecked="{Binding ComponentVisibilities.ReferenceNames}" Content="Reference names"/>
+
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="5">
+
+            <CheckBox Margin="10,0,0,0" IsChecked="{Binding ComponentVisibilities.Pc}" Content="PC"/>
+            <CheckBox Margin="10,0,0,0" IsChecked="{Binding ComponentVisibilities.Alu}" Content="ALU"/>
+            <CheckBox Margin="10,0,0,0" IsChecked="{Binding ComponentVisibilities.Io}" Content="I/O"/>
+
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="5">
+
+            <CheckBox Margin="10,0,0,0" IsChecked="{Binding ComponentVisibilities.OpDesc}" Content="OP description"/>
+            <CheckBox Margin="10,0,0,0" IsChecked="{Binding ComponentVisibilities.Code}" Content="Code"/>
+
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="5">
+
+            <CheckBox Margin="10,0,0,0" IsChecked="{Binding ComponentVisibilities.LoadedOp}" Content="Loaded OP"/>
+            <CheckBox Margin="10,0,0,0" IsChecked="{Binding ComponentVisibilities.LoadedArg}" Content="Loaded Arg"/>
+            <CheckBox Margin="10,0,0,0" IsChecked="{Binding ComponentVisibilities.InsCount}" Content="Instruction Count"/>
+
+        </StackPanel>
+        <StackPanel Orientation="Horizontal"  Margin="5">
+
+            <Button Content="Select all" FontSize="20" FontWeight="Bold" Margin="10" Padding="15" Click="SelectAll_OnClick"/>
+            <Button Content="Deselect all" FontSize="20" FontWeight="Bold" Margin="10" Padding="15" Click="DeselectAll_OnClick"/>
+
+        </StackPanel>
+    </StackPanel>
+</Window>
