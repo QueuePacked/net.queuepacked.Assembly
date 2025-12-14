@@ -335,13 +335,20 @@ namespace net.queuepacked.Assembly.CPU
                     string operation = setValue.Groups["operation"].Value;
 
                     stringBuilder.Append(Operation.WAC).Append(' ');
+                    bool sourceIsNumber = false;
                     if (int.TryParse(sourceRef, out int sourceAsInt))
+                    {
                         constantsToAdd.Add(sourceAsInt);
+                        sourceIsNumber = true;
+                    }
 
                     if (sourceRef[0] != '#')
                         stringBuilder.Append('#');
 
-                    stringBuilder.Append(constBase).Append(sourceAsInt).AppendLine();
+                    if (sourceIsNumber)
+                        stringBuilder.Append(constBase).Append(sourceAsInt).AppendLine();
+                    else
+                        stringBuilder.Append(sourceRef).AppendLine();
 
                     if (operation.Length > 0)
                     {
@@ -349,7 +356,8 @@ namespace net.queuepacked.Assembly.CPU
                         bool isNumber = true;
                         if (!int.TryParse(argument, out int argumentAsInt))
                         {
-                            argument = argument.Substring(1);
+                            if (argument[0] == '#')
+                                argument = argument[1..];
                             isNumber = false;
                         }
 
