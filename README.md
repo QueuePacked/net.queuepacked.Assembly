@@ -109,7 +109,7 @@ The condition can be inverted and depends on a value being equal to 0 or the AC 
 Example:
 >repeat until flag  
 set b to b - c  
-end of skip
+end of repeat
                         
 ### function
     function <name>
@@ -121,7 +121,7 @@ Example:
 >function shiftAdd  
 set a to a < 1  
 set a to a + 1  
-end of skip
+end of function
                         
 ### call       
     call <name>
