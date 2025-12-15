@@ -137,7 +137,7 @@ namespace net.queuepacked.Assembly.Tipsy
                         Example:
                             repeat until flag
                                 set b to b - c
-                            end of skip
+                            end of repeat
                         
                         
                         | function <name>
@@ -149,7 +149,7 @@ namespace net.queuepacked.Assembly.Tipsy
                             function shiftAdd
                                 set a to a < 1
                                 set a to a + 1
-                            end of skip
+                            end of function
                         
                         
                         | call <name>
