@@ -166,15 +166,14 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="2"/>
-                                <ColumnDefinition Width="188" SharedSizeGroup="ColumnSize"/>
+                                <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <TextBox Grid.Column="1" Background="White" TextWrapping="Wrap" Padding="5,5,5,5" BorderThickness="0" AcceptsReturn="True" Text="{Binding Path=., Mode=OneWay}" IsReadOnly="True" FontSize="18" FontWeight="DemiBold" MaxLines="12"/>
+                            <TextBox Grid.Column="1" Background="White" TextWrapping="NoWrap" Padding="5,5,5,5" BorderThickness="0" AcceptsReturn="True" Text="{Binding Path=., Mode=OneWay}" IsReadOnly="True" FontSize="18" FontWeight="DemiBold" MaxLines="12"/>
                             <Rectangle Grid.Column="0" Fill="Black"/>
                         </Grid>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-            <!--<TextBox TextWrapping="Wrap" MinLines="5" Padding="5,5,5,5" BorderThickness="0" AcceptsReturn="True" Text="{Binding Code, Mode=OneWay}" IsReadOnly="True" FontSize="18" FontWeight="DemiBold" MaxLines="12"/>-->
         </Border>
 
         <TextBlock Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Margin="15,0,0,0" TextWrapping="NoWrap" Padding="5" Text="{Binding Name, Mode=OneWay}" FontSize="35" FontWeight="Black" TextAlignment="Left" VerticalAlignment="Top" 
